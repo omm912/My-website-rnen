@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Personal Workspace</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- CSS COLORS & THEME --- */
+        :root {
+            --primary: #00f2fe;
+            --secondary: #4facfe;
+            --glass: rgba(255, 255, 255, 0.05);
+            --text: #ffffff;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; cursor: none; }
+
+        body {
+            background: #050505;
+            color: var(--text);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- CUSTOM CURSOR --- */
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            pointer-events: none;
+            box-shadow: 0 0 20px var(--primary), 0 0 40px var(--secondary);
+            z-index: 9999;
+            transition: transform 0.1s ease;
+        }
+
+        /* --- BACKGROUND PARTICLES --- */
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+
+        /* --- NAVIGATION BAR --- */
+        nav {
+            background: rgba(0,0,0,0.8);
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--glass);
+        }
+
+        nav a { color: white; text-decoration: none; font-size: 1.8rem; transition: 0.3s; }
+        nav a:hover { color: var(--primary); transform: scale(1.2) translateY(-5px); }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 50vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3.5rem;
+            background: linear-gradient(to right, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .typing-text { font-size: 1.2rem; min-height: 1.5rem; color: var(--secondary); }
+
+        /* --- MAIN CONTAINER --- */
+        .container { max-width: 900px; margin: auto; padding: 20px; }
+
+        .glass-card {
+            background: var(--glass);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 30px;
+            margin-bottom: 40px;
+            transition: 0.5s;
+            backdrop-filter: blur(5px);
+        }
+
+        .glass-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 242, 254, 0.15);
+        }
+
+        h2 { margin-bottom: 20px; color: var(--primary); font-family: 'Orbitron'; }
+
+        /* --- LINKS GRID --- */
+        .btn-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .social-btn {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            text-align: center;
+            border-radius: 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .social-btn:hover {
+            background: var(--primary);
+            color: black;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        /* --- VIDEO STYLING --- */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        footer { text-align: center; padding: 50px; opacity: 0.5; font-size: 0.9rem; }
+
+    </style>
+</head>
+<body>
+
+<div id="cursor"></div>
+
+<canvas id="stars"></canvas>
+
+<nav>
+    <a href="https://www.youtube.com/@YourChannel" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+    <a href="https://instagram.com/YourID" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+    <a href="https://github.com/YourUser" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+    <a href="#" title="Contact"><i class="fas fa-envelope"></i></a>
+</nav>
+
+<div class="hero">
+    <h1>MY WORLD</h1>
+    <p class="typing-text" id="typewriter"></p>
+</div>
+
+<div class="container">
+    
+    <div class="glass-card">
+        <h2>🎥 Featured Video</h2>
+        <div class="video-container">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+        </div>
+        <p style="margin-top:15px; opacity:0.8;">Mera naya video check karein aur channel ko subscribe karein!</p>
+    </div>
+
+    <div class="glass-card">
+        <h2>🔗 Quick Links</h2>
+        <div class="btn-grid">
+            <a href="https://www.youtube.com/@YourChannel" target="_blank" class="social-btn">Subscribe YouTube</a>
+            <a href="#" class="social-btn">Mera Naya Software</a>
+            <a href="#" class="social-btn">Download Apps</a>
+            <a href="#" class="social-btn">About My Work</a>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+    <p>© 2026 | Built for the Future</p>
+</footer>
+
+<script>
+    // 1. Mouse Cursor Logic
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+    });
+
+    // 2. Typing Animation Logic
+    const text = "Coding with Passion... | Welcome to My Living Workspace | Explore the Flow";
+    let i = 0;
+    function type() {
+        if (i < text.length) {
+            document.getElementById("typewriter").innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, 100);
+        }
+    }
+    window.onload = type;
+
+    // 3. Star Background Animation
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let stars = [];
+
+    for(let j=0; j<150; j++) {
+        stars.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            size: Math.random() * 2,
+            speed: Math.random() * 0.5 + 0.2
+        });
+    }
+
+    function animate() {
+        ctx.clearRect(0,0,canvas.width, canvas.height);
+        ctx.fillStyle = "rgba(0, 242, 254, 0.8)";
+        stars.forEach(s => {
+            s.y -= s.speed;
+            if(s.y < 0) s.y = canvas.height;
+            ctx.beginPath();
+            ctx.arc(s.x, s.y, s.size, 0, Math.PI*2);
+            ctx.fill();
+        });
+        requestAnimationFrame(animate);
+    }
+    animate();
+</script>
+
+</body>
+</html>
